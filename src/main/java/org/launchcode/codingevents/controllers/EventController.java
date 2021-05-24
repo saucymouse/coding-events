@@ -21,6 +21,7 @@ public class EventController {
     @GetMapping
     public String displayAllEvents(Model model) {
         model.addAttribute("events", events);
+        model.addAttribute("title", "All Events");
         events.put("Big Party", "it is what it sounds like");
         events.put("Small Party", "like a big party but smaller");
         events.put("Teeth Cleaning", "the opposite of a party");
