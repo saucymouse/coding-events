@@ -24,7 +24,7 @@ public class Event {
     public void setDescription(String description) {
         this.description = description;
     }
-
+    //TODO mess with changing method name for getters
     public String getName() {
         return name;
     }
