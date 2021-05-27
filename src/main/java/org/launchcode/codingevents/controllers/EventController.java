@@ -60,7 +60,6 @@ public class EventController {
         Event event = EventData.getById(eventId);
         model.addAttribute("title", "Edit Event: " + event.getName() + eventId);
         model.addAttribute("event", event);
-        //TODO
         return "/events/edit";
     }
 
