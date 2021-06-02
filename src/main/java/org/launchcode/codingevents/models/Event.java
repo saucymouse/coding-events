@@ -1,8 +1,6 @@
 package org.launchcode.codingevents.models;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 /**
@@ -24,14 +22,25 @@ public class Event {
     @Email(message = "Invalid e-mail. Try again")
     private String contactEmail;
 
-    public Event(String name, String description, String contactEmail) {
+    @NotBlank(message = "Location is required")
+    @NotNull(message = "Can't be null?")
+    private String location;
+
+    private boolean regRequired;
+
+    @DecimalMin(value = "1", message = "Must be greater than 0")
+    private int noOfAttendees;
+
+    public Event(String name, String description, String contactEmail, String location, boolean regRequired, int noOfAttendees) {
         this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
+        this.location = location;
+        this.regRequired = regRequired;
+        this.noOfAttendees = noOfAttendees;
     }
 
-//test
     public Event() {
         this.id = nextId;
         nextId++;
@@ -59,6 +68,30 @@ public class Event {
 
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public boolean isRegRequired() {
+        return regRequired;
+    }
+
+    public void setRegRequired(boolean regRequired) {
+        this.regRequired = regRequired;
+    }
+
+    public int getNoOfAttendees() {
+        return noOfAttendees;
+    }
+
+    public void setNoOfAttendees(int noOfAttendees) {
+        this.noOfAttendees = noOfAttendees;
     }
 
     public int getId() {

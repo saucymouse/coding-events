@@ -14,6 +14,9 @@
             <th>Name</th>
             <th>Description</th>
             <th>Contact Email</th>
+            <th>Location</th>
+            <th>Registration Required</th>
+            <th>No. of Attendees</th>
         </tr>
     </thead>
     <tr th:each="event : ${events}">
@@ -21,6 +24,10 @@
         <td th:text="${event.name}"></td>
         <td th:text="${event.description}"></td>
         <td th:text="${event.contactEmail}"></td>
+        <td th:text="${event.location}"></td>
+        <td th:if="${event.regRequired}" th:text="Yes"></td>
+        <td th:unless="${event.regRequired}" th:text="No"></td>
+        <td th:text="${event.noOfAttendees}"></td>
         <td>
             <a th:href="@{/events/edit/{id}(id=${event.id})}">Edit</a>
         </td>
