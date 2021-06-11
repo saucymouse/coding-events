@@ -1,7 +1,5 @@
 package org.launchcode.codingevents;
 
-import org.launchcode.codingevents.data.EventData;
-import org.launchcode.codingevents.models.Event;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
