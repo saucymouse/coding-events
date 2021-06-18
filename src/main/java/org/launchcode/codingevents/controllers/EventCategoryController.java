@@ -30,19 +30,19 @@ public class EventCategoryController {
     }
 
     @GetMapping("create")
-    public String renderCreateEventCategoryForm(Model model) {
+    public String renderCreateEventCategoryForm(Model model, @ModelAttribute EventCategory eventCategory) {
         model.addAttribute("title", "Create Category");
-        model.addAttribute(new EventCategory());
+//        model.addAttribute(new EventCategory());
         return "eventcategories/create";
     }
 
     @PostMapping("create")
-    public String processCreateEventCategoryForm(Model model, @ModelAttribute @Valid EventCategory newEventCategory, Errors errors) {
+    public String processCreateEventCategoryForm(Model model, @ModelAttribute @Valid EventCategory eventCategory, Errors errors) {
         model.addAttribute("title", "Create Category");
         if (errors.hasErrors()) {
             return "eventcategories/create";
         } else {
-            eventCategoryRepository.save(newEventCategory);
+            eventCategoryRepository.save(eventCategory);
             return "redirect:";
         }
     }

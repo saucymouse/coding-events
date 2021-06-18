@@ -1,31 +1,22 @@
 package org.launchcode.codingevents.models;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Entity
-public class EventCategory {
-
-    @Id
-    @GeneratedValue
-    private int id;
+public class EventCategory extends AbstractEntity {
 
     @NotBlank(message = "Can't be blank!")
     private String name;
 
+    //TODO this constructor not necessary?
     public EventCategory(int id, String name) {
-        this.id = id;
         this.name = name;
     }
 
-    public EventCategory() {}
-
-    public int getId() {
-        return id;
+    public EventCategory() {
     }
+
 
     public String getName() {
         return name;
@@ -34,4 +25,6 @@ public class EventCategory {
     public void setName(String name) {
         this.name = name;
     }
+
+
 }
