@@ -9,11 +9,11 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th>Category Name</th>
+        <th>Tag Name</th>
     </tr>
     </thead>
-    <tr th:each="eventCategory : ${categories}">
-        <td><a th:text="${eventCategory.name}" th:href="'/events?categoryId=' + ${eventCategory.id}"></a></td>
+    <tr th:each="tag : ${tags}">
+        <td th:text="${tag.getDisplayName}"></td>
     </tr>
 </table>
 

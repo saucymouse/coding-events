@@ -1,8 +1,12 @@
 package org.launchcode.codingevents.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.*;
+import javax.persistence.OneToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Created by Chris Bay
@@ -14,33 +18,17 @@ public class Event extends AbstractEntity {
     @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
     private String name;
 
-    @Size(max = 500, message = "Description too long")
-    private String description;
-
-    @NotNull(message = "E-mail is required")
-    @Email(message = "Invalid e-mail. Try again")
-    private String contactEmail;
-
-    @NotBlank(message = "Location is required")
-    @NotNull(message = "Can't be null?")
-    private String location;
-
-    private boolean regRequired;
-
-    @DecimalMin(value = "1", message = "Must be greater than 0")
-    private int noOfAttendees;
+    @OneToOne(cascade = CascadeType.ALL)
+    @Valid
+    @NotNull
+    private EventDetails eventDetails;
 
     @ManyToOne
     @NotNull(message = "Category is required")
     private EventCategory eventCategory;
 
-    public Event(String name, String description, String contactEmail, String location, boolean regRequired, int noOfAttendees, EventCategory eventCategory) {
+    public Event(String name, EventCategory eventCategory) {
         this.name = name;
-        this.description = description;
-        this.contactEmail = contactEmail;
-        this.location = location;
-        this.regRequired = regRequired;
-        this.noOfAttendees = noOfAttendees;
         this.eventCategory = eventCategory;
     }
 
@@ -55,44 +43,12 @@ public class Event extends AbstractEntity {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public EventDetails getEventDetails() {
+        return eventDetails;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getContactEmail() {
-        return contactEmail;
-    }
-
-    public void setContactEmail(String contactEmail) {
-        this.contactEmail = contactEmail;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public boolean isRegRequired() {
-        return regRequired;
-    }
-
-    public void setRegRequired(boolean regRequired) {
-        this.regRequired = regRequired;
-    }
-
-    public int getNoOfAttendees() {
-        return noOfAttendees;
-    }
-
-    public void setNoOfAttendees(int noOfAttendees) {
-        this.noOfAttendees = noOfAttendees;
+    public void setEventDetails(EventDetails eventDetails) {
+        this.eventDetails = eventDetails;
     }
 
     public EventCategory getEventCategory() {

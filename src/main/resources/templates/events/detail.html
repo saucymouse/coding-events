@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<nav th:replace="fragments :: header"></nav>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Contact Email</th>
+        <th>Location</th>
+        <th>Registration Required</th>
+        <th>No. of Attendees</th>
+        <th>Category</th>
+    </tr>
+    </thead>
+    <tr>
+        <td th:text="${event.id}"></td>
+        <td th:text="${event.name}"></td>
+        <td th:text="${event.eventDetails.description}"></td>
+        <td th:text="${event.eventDetails.contactEmail}"></td>
+        <td th:text="${event.eventDetails.location}"></td>
+        <td th:if="${event.eventDetails.regRequired}" th:text="Yes"></td>
+        <td th:unless="${event.eventDetails.regRequired}" th:text="No"></td>
+        <td th:text="${event.eventDetails.noOfAttendees}"></td>
+        <td th:text="${event.eventCategory}"></td>
+        <td>
+            <a th:href="@{/events/edit/{id}(id=${event.id})}">Edit</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
